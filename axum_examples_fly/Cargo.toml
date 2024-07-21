@@ -1,0 +1,13 @@
+[package]
+name = "axum_examples_fly"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7.5"
+reqwest = "0.12.5"
+scraper = "0.19.1"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+url = "2.5.2"
+serde_json = "1.0.120"
