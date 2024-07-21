@@ -38,10 +38,16 @@ tokio = { version = "1.0", features = ["full"] }
 
 other cargo
 ================================
-- scraper 사용시 : cargo add reqwest , cargo add scraper , cargo add serde , cargo add serde_json , cargo add url
+- scraper 사용시 : cargo add reqwest , cargo add scraper
+
+
+- json 관련 : cargo add serde , cargo add serde_json
 ```
 serde = { version = "1.0", features = ["derive"] }
 ```
+
+
+- url 파싱 관련 : cargo add url
 
 
 fly commands
@@ -59,3 +65,4 @@ example sites
 * https://mycodings.fly.dev/blog/2023-09-04-howto-rust-web-server-web-application-with-actix-web
   * vpngate.net 사이트에서 openvpn 설정파일을 쉽게 다운로드 하기 위한 스크래핑
   * src/services/openvpn
+  * https://axum-examples-fly.fly.dev/openvpn

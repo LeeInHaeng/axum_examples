@@ -4,7 +4,7 @@ use scraper::selectable::Selectable;
 use super::{lib::request_with_retry, models::VpnInfo};
 use url::Url;
 
-pub async fn scrape_info() -> Result<Vec<String>, Box<dyn std::error::Error>> {
+pub async fn get_scrape_info() -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let mut result = Vec::new();
 
     match request_with_retry("https://www.vpngate.net/en/").await {
