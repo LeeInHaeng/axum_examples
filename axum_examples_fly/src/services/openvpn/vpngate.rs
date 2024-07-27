@@ -1,4 +1,3 @@
-use std::fmt::Error;
 use scraper::selectable::Selectable;
 
 use super::{lib::request_with_retry, models::VpnInfo};
@@ -23,17 +22,13 @@ pub async fn get_scrape_info() -> Result<Vec<String>, Box<dyn std::error::Error>
             }
 
             if target_vg_host.is_none() {
-                let err = "target vg host is none";
-                eprint!("Failed to parse data: {}", err);
-                return Err(Box::new(Error));
+                return Err(format!("Failed to parse data: target vg host is none").into());
             }
 
             // tbody
             let target_tbody = target_vg_host.unwrap().select(&scraper::Selector::parse("tbody").unwrap()).next();
             if target_tbody.is_none() {
-                let err = "target tbody is none";
-                eprint!("Failed to parse data: {}", err);
-                return Err(Box::new(Error));
+                return Err(format!("Failed to parse data: target tbody is none").into());
             }
 
             // tr
@@ -49,31 +44,23 @@ pub async fn get_scrape_info() -> Result<Vec<String>, Box<dyn std::error::Error>
                 // 원래 6인데, 위에서 next 한번 했기 때문에 5
                 let config_file_td = target_tds.nth(5);
                 if config_file_td.is_none() {
-                    let err = "target tr 6 is none";
-                    eprint!("Failed to parse data: {}", err);
-                    return Err(Box::new(Error));
+                    return Err(format!("Failed to parse data: target tr 6 is none").into());
                 }
 
                 let a_selector = scraper::Selector::parse("a").unwrap();
                 let config_file_a = config_file_td.unwrap().select(&a_selector).next();
                 if config_file_a.is_none() {
-                    let err = "config file a is none";
-                    eprint!("Failed to parse data: {}", err);
-                    return Err(Box::new(Error));
+                    return Err(format!("Failed to parse data: config file a is none").into());
                 }
 
                 let config_file_link = config_file_a.unwrap().value().attr("href");
                 if config_file_link.is_none() {
-                    let err = "config file link is none";
-                    eprint!("Failed to parse data: {}", err);
-                    return Err(Box::new(Error));
+                    return Err(format!("Failed to parse data: config file link is none").into());
                 }
 
                 let parsed_config_file_link = Url::parse(&format!("https://vpngate.net/en/{}", config_file_link.unwrap()).to_string());
                 if parsed_config_file_link.is_err() {
-                    let err = "config file link parse error";
-                    eprint!("Failed to parse data: {}", err);
-                    return Err(Box::new(Error));
+                    return Err(format!("Failed to parse data: config file link parse error").into());
                 }
 
                 let mut vpn_info = VpnInfo::new();
@@ -107,8 +94,7 @@ pub async fn get_scrape_info() -> Result<Vec<String>, Box<dyn std::error::Error>
             }
         }
         Err(err) => {
-            eprint!("Failed to fetch data: {}", err);
-            return Err(Box::new(err));
+            return Err(format!("Failed to fetch data: {}", err).into());
         }
     }
 

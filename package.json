@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.2",
+    "svelte-loading-spinners": "^0.3.6",
+    "tailwindcss": "^3.4.7"
+  }
+}

@@ -26,12 +26,17 @@ axum cargo
 ================================
 ```
 cargo add axum
+
+cargo add tower
+
+cargo add tower_http
 ```
 
 - Cargo.toml
 
 ```
 tokio = { version = "1.0", features = ["full"] }
+tower-http = { version = "0.5.2", features = ["cors"] }
 ```
 
 
@@ -57,6 +62,28 @@ fly commands
 - fly launch
 
 - 배포시 : fly deploy
+
+
+
+
+svelte 관련
+================================
+- npm create svelte@latest ui
+
+- cd ui
+
+- tailwindcss 관련 : npm i -D tailwindcss postcss autoprefixer , npx tailwindcss init tailwind.config.cjs -p
+
+--> tailwind.config.cjs , app.css , +layout.svelte 참고
+
+- npm install
+
+- npm run dev
+
+- sveltekit static site 관련 : npm i -D @sveltejs/adapter-static
+
+- svelte 로딩 관련 : npm i -D svelte-loading-spinners
+
 
 
 
